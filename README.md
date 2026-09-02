@@ -1,68 +1,22 @@
-# project001
+# 迫小淵・澄原地区 地域振興観光案内サイト
 
-Claude CodeによるAI開発OS。新規アプリ開発に共通する開発方針・タスク管理・レビュー手順をテンプレートとして提供する。
+note投稿予定のモキュメンタリー（フェイクドキュメンタリー）ホラー旅行記の関連素材として作成した、架空の地方公共団体観光サイト。実在の三重県をモデルにしつつ、登場する村・地名（迫小淵＝さこぶち、澄原＝すみきばら）はすべて架空。
 
-## セットアップ
+サイトは2000年代初頭の地方公共団体ホームページを模したデザインで、テーブルレイアウト・素朴な配色・固定幅（800px、スマホ非対応）で作られている。
 
-1. `git clone`等でこのリポジトリを取得する。
-2. （任意）`bash .claude/bootstrap.sh`を実行し、Optional Dependency（Agent-Reach/Code Review Graph/Context7/GitHub CLI等）の導入状況を確認する。インストールは行わず案内のみを表示するため、実行しなくてもproject001は完全に動作する。
-3. AGENTS.mdの開発フロー（User → Manager → Planner → Developer → Reviewer → Manager → Complete）に従って進める。
+## 開発方針
 
-## 使い方
+AGENTS.md（開発方針・設計原則・ワークフロー）、REVIEW.md（レビュー方針）、CLAUDE.mdの運用ルールに従う。詳細は各ファイルを参照。
 
-新規アプリを開発する場合、このリポジトリをコピーして雛形として使う。個別アプリの仕様・実装コードはproject001自体には追加しない。以降はAGENTS.mdの開発フローに従って進める。
+## ファイル構成
 
-### 新規プロジェクトでの初期化
+- `index.html` — 正規の観光案内トップページ。お知らせ、地区案内、沿革・歴史、名所・見どころ、写真ギャラリー、アクセスの各セクションで構成
+- `kiroku.html` — 隠しページ。index.html内の「沿革・歴史」セクションにある「誤り」という一語だけにリンクが仕込まれており、そこからのみ遷移できる。index.htmlと同じサイト構造・配色を保持したまま、本文がすべて裏設定（本作品の核心的なネタバレ）の文章で上書きされている、というギミックページ
+- `404.html` — サイト内のフェイクリンク（実体のない周遊リンク）の遷移先
+- `images/` — 写真ギャラリー用の画像フォルダ。`images/README.txt`に画像追加方法の説明あり
 
-`/init-project`コマンド（`.claude/commands/init-project.md`）を実行するか、以下の手順を直接行う。コピー直後にこの手順を行わないと、新規プロジェクトのSessionStart Hookがproject001自身の構築履歴を表示し続けてしまう。docs/のうちtasks.md/progress.md/decisions.mdの3つのみをリセットする。
+## 注意点
 
-- `docs/tasks.md`: 「## タスク一覧」表のヘッダ行と区切り行は残し、`T-xxx`の行をすべて削除する。「## バックログ」の既存項目もすべて削除する。列構成は変えない（SessionStart Hookが状態列の値でフィルタするため）。
-- `docs/progress.md`: 「## 記録フォーマット」直後の`---`（この行を含む）より下をすべて削除する。
-- `docs/decisions.md`: 同様に`---`（この行を含む）より下のD-xxxをすべて削除する。
-- `README.md`: プロジェクト名・概要を書き換える。本節「### 新規プロジェクトでの初期化」自体は削除してよい。
-
-## 構成
-
-- AGENTS.md
-  - 開発方針・設計原則・ワークフロー（全AIエージェント共通、最優先で読む）
-
-- REVIEW.md
-  - レビュー方針（敵対的検証 / Adversarial Review）。reviewer Agentが従う
-
-- CLAUDE.md
-  - Claude Code固有の設定・運用ルール（AGENTS.mdをimportする）
-
-- .claude/agents
-  - planner / designer / researcher / developer / reviewer
-
-- .claude/skills/design-principles
-  - UI/UXデザインの品質判断基準（designer/developer/reviewerが使用）
-
-- .claude/settings.json
-  - SessionStart / PreCompact / PostToolUse / SubagentStop / SessionEnd Hook（セッション継続性・ドキュメント品質の補助）、subagentStatusLine（サブエージェント進捗の可視化）、enabledPlugins（Frontend Designをproject scopeで有効化）。詳細はdocs/agents.md・docs/design-workflow.md
-
-- .claude/bootstrap.sh
-  - Optional Dependency（Capability Layer）の導入状況を案内のみで表示する検出スクリプト。インストールは行わない
-
-- .claude/commands/init-project.md
-  - `/init-project`コマンド。新規プロジェクトでの初期化手順（本READMEの該当節）を実行する
-
-- docs
-  - tasks.md: タスクと状態管理
-  - progress.md: 作業履歴
-  - decisions.md: 設計判断の記録
-  - agents.md: Agent構成・モデル構成・Hook/Status Line構成の詳細
-  - agent-reach.md: [Agent-Reach](https://github.com/Panniantong/Agent-Reach) 対応（Optional Dependency、検出・フォールバック方針）
-  - code-review-graph.md: [Code Review Graph](https://github.com/tirth8205/code-review-graph) 対応（Optional Dependency、影響範囲解析）
-  - context7.md: [Context7](https://github.com/upstash/context7) 対応（Optional Dependency、ライブラリドキュメント確認）
-  - capability-layer.md: 外部ツール検出の共通規約（Capability Layer）
-  - research-workflow.md: 外部調査ワークフロー
-  - design-workflow.md: デザインワークフロー（Designer/Claude Design/Frontend Designプラグインの連携）
-  - status-line.md: サブエージェント進捗の可視化（Status Line）の仕様
-
-## 開発フロー
-
-User → Manager → Planner → Developer → Reviewer → Manager → Complete
-（外部調査が必要な場合のみResearcherが、UI/UX実装を伴う場合のみDesignerが加わる）
-
-詳細は AGENTS.md・REVIEW.md・docs/agents.md・docs/design-workflow.md を参照。
+- サイト全体が「スマホ表示非対応」を意図的な仕様としている（`meta viewport`を`width=800`に固定）。レスポンシブ対応の提案は不要。
+- インラインスタイルの多用等、コード品質面で気になる点があっても、これは意図的な「2000年代初頭の素人が作った風」の再現であり、モダンな設計への改善提案は基本的に不要。明らかなバグ（リンク切れ、表示崩れ）があれば指摘・修正する。
+- `kiroku.html`はネタバレページであり、このリポジトリはpublicのため誰でも内容を読める。隠しページとしての仕掛けは「index.htmlに明示的なリンクがない」ことのみで成立している。

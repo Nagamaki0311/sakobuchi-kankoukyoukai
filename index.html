@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>迫小淵・澄原地区　地域振興観光案内ホームページ</title>
+<meta name="description" content="迫小淵・澄原地区の観光案内、歴史、アクセス情報">
+<meta name="keywords" content="迫小淵,澄原,観光,峡谷,ダム湖,磨崖仏,吊り橋">
+<meta name="viewport" content="width=800">
+<style>
+  /* ==========================================
+     迫小淵・澄原地区 地域振興観光案内ホームページ
+     最終更新：下記フッター参照
+     ※後から編集しやすいよう、色やパーツごとに
+       CSS変数とセクション分けをしています
+     ========================================== */
+
+  :root{
+    --page-bg: #dff0f5;
+    --frame-bg: #ffffff;
+    --header-top: #5fb8d8;
+    --header-bottom: #2f8fb8;
+    --nav-bg: #ffe9a8;
+    --nav-border: #e0a800;
+    --accent-green: #3fa34d;
+    --accent-green-dark: #276e33;
+    --accent-pink: #ff2f92;
+    --text-main: #333333;
+    --text-sub: #555555;
+    --link-color: #0033cc;
+    --link-visited: #660099;
+    --box-border: #7fc9e0;
+    --footer-bg: #f4f4f4;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    padding:0;
+    background-color: var(--page-bg);
+    background-image: repeating-linear-gradient(180deg, #eaf7fb 0px, #eaf7fb 2px, #dff0f5 2px, #dff0f5 4px);
+    font-family: "MS PGothic", "ＭＳ Ｐゴシック", Osaka, "メイリオ", Meiryo, sans-serif;
+    font-size: 13px;
+    color: var(--text-main);
+  }
+
+  a { color: var(--link-color); }
+  a:visited { color: var(--link-visited); }
+  a:hover { color: #ff6600; }
+
+  /* 全体を固定幅の1枚テーブルで囲う、古典的な構成 */
+  #page-wrap{
+    width: 800px;
+    margin: 0 auto;
+    background-color: var(--frame-bg);
+    border-left: 2px solid var(--box-border);
+    border-right: 2px solid var(--box-border);
+  }
+
+  /* ヘッダー */
+  #site-header{
+    background: linear-gradient(180deg, var(--header-top) 0%, var(--header-bottom) 100%);
+    color: #ffffff;
+    padding: 10px 14px 8px 14px;
+    border-bottom: 4px solid #ffcc00;
+  }
+  #site-header table{ width:100%; border-collapse:collapse; }
+  #site-title{
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    margin:0;
+    padding:0;
+  }
+  #site-subtitle{
+    font-size: 11px;
+    margin-top:2px;
+    color:#eaffff;
+  }
+  #header-right{
+    text-align:right;
+    font-size:11px;
+    color:#f5f5f5;
+    vertical-align:bottom;
+  }
+
+  /* お知らせセクション */
+  #notice-section{
+    margin-bottom: 16px;
+  }
+  #notice-section .notice-heading{
+    position:relative;
+    background: linear-gradient(90deg, var(--accent-pink) 0%, #ff7fc0 85%, #ffc2de 100%);
+    color:#ffffff;
+    font-size:15px;
+    font-weight:bold;
+    padding:7px 14px 7px 34px;
+    border:2px solid #c2005f;
+    border-left:10px solid #c2005f;
+    text-shadow:1px 1px 1px rgba(120,0,50,0.4);
+    letter-spacing:1px;
+  }
+  #notice-section .notice-heading::before{
+    content:"◆";
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#ffeaf5;
+    font-size:12px;
+    text-shadow:none;
+  }
+  #notice-section .notice-heading::after{
+    content:"";
+    position:absolute;
+    right:8px;
+    top:4px;
+    bottom:4px;
+    width:3px;
+    background:rgba(255,255,255,0.5);
+  }
+  #notice-list{
+    border:1px solid #ffc2de;
+    border-top:none;
+    background:#fff5fa;
+  }
+  #notice-list table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12px;
+  }
+  #notice-list td{
+    padding:6px 10px;
+    border-bottom:1px dotted #ffc2de;
+    vertical-align:top;
+  }
+  #notice-list tr:last-child td{ border-bottom:none; }
+  .notice-date{
+    white-space:nowrap;
+    width:100px;
+    color:#a8005c;
+    font-weight:bold;
+  }
+  .notice-new{
+    display:inline-block;
+    background:var(--accent-pink);
+    color:#ffffff;
+    font-size:9px;
+    font-weight:bold;
+    padding:1px 4px;
+    margin-right:4px;
+    border-radius:2px;
+    vertical-align:middle;
+  }
+  #notice-stopped{
+    font-size:11px;
+    color:#a8005c;
+    text-align:right;
+    padding:4px 10px;
+    background:#fff5fa;
+    border:1px solid #ffc2de;
+    border-top:none;
+  }
+
+  /* ナビゲーション（テーブルタグでボタン風に） */
+  #nav-wrap{
+    background-color: var(--nav-bg);
+    border-bottom: 2px solid var(--nav-border);
+    padding: 6px 8px;
+  }
+  #nav-wrap table{ border-collapse: collapse; width:100%; }
+  #nav-wrap td{
+    text-align:center;
+    padding:0 2px;
+  }
+  .nav-btn{
+    display:block;
+    background-color:#ffffff;
+    border:1px solid #cc9900;
+    border-radius:3px;
+    padding:5px 4px;
+    font-size:12px;
+    font-weight:bold;
+    color:#664400;
+    text-decoration:none;
+  }
+  .nav-btn:visited{ color:#664400; }
+  .nav-btn:hover{
+    background-color:#fff2cc;
+    color:#cc3300;
+  }
+
+  /* パンくず */
+  #breadcrumb{
+    padding:6px 12px;
+    font-size:11px;
+    color:#666666;
+    background:#f7fbfd;
+    border-bottom:1px dashed #bcdfe8;
+  }
+
+  /* 本体：左メニュー＋右コンテンツの2カラム（テーブルレイアウト） */
+  #body-table{ width:100%; border-collapse:collapse; }
+  #body-table > tbody > tr > td{ vertical-align:top; }
+
+  #side-col{
+    width:170px;
+    background-color:#eef8fb;
+    border-right:2px solid var(--box-border);
+    padding:10px 8px;
+  }
+  .side-box{
+    background:#ffffff;
+    border:1px solid var(--box-border);
+    margin-bottom:14px;
+  }
+  .side-box-title{
+    background: var(--accent-green);
+    color:#ffffff;
+    font-size:12px;
+    font-weight:bold;
+    padding:4px 6px;
+  }
+  .side-box-title.pink{
+    background: var(--accent-pink);
+  }
+  .side-box-body{
+    padding:6px 8px;
+    font-size:12px;
+    line-height:1.6;
+  }
+  .side-box-body a{ display:block; margin-bottom:4px; }
+
+  #main-col{
+    padding:14px 18px;
+  }
+
+  h2.page-h2{
+    position:relative;
+    background: linear-gradient(90deg, var(--accent-green) 0%, #8fd39e 85%, #bfe8c8 100%);
+    color:#ffffff;
+    font-size:16px;
+    font-weight:bold;
+    padding:7px 14px 7px 34px;
+    margin:0 0 12px 0;
+    border:2px solid var(--accent-green-dark);
+    border-left:10px solid var(--accent-green-dark);
+    text-shadow:1px 1px 1px rgba(0,80,20,0.4);
+    letter-spacing:1px;
+  }
+  h2.page-h2::before{
+    content:"◆";
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#eaffee;
+    font-size:13px;
+    text-shadow:none;
+  }
+  h2.page-h2::after{
+    content:"";
+    position:absolute;
+    right:8px;
+    top:4px;
+    bottom:4px;
+    width:3px;
+    background:rgba(255,255,255,0.5);
+  }
+
+  h3.page-h3{
+    color:var(--accent-green-dark);
+    font-size:14px;
+    border-bottom:2px solid #cfe9d3;
+    padding-bottom:3px;
+    margin-top:22px;
+  }
+
+  p{ line-height:1.8; margin:8px 0 14px 0; }
+
+  .kv-table{
+    border-collapse: collapse;
+    width:100%;
+    margin: 10px 0 18px 0;
+    font-size:12px;
+  }
+  .kv-table th{
+    background:#eaf6ea;
+    border:1px solid #bcdcc0;
+    padding:6px 8px;
+    width:110px;
+    text-align:left;
+    color:var(--accent-green-dark);
+    white-space:nowrap;
+  }
+  .kv-table td{
+    border:1px solid #bcdcc0;
+    padding:6px 8px;
+    background:#ffffff;
+  }
+
+  .photo-box{
+    border:1px solid #bbbbbb;
+    background:#f8f8f8;
+    padding:6px;
+    display:inline-block;
+    margin:4px 8px 12px 0;
+    text-align:center;
+  }
+  .photo-box img{
+    display:block;
+    width:220px;
+    height:150px;
+    object-fit:cover;
+    border:1px solid #999999;
+  }
+  .photo-caption{
+    font-size:11px;
+    color:#666666;
+    margin-top:4px;
+    width:220px;
+  }
+
+  .notice-box{
+    background:#fff8e6;
+    border:1px dashed #e0a800;
+    padding:8px 10px;
+    font-size:12px;
+    margin:14px 0;
+  }
+
+  hr.sep{
+    border:none;
+    border-top:1px dotted #aacccc;
+    margin:18px 0;
+  }
+
+  /* バナーコーナー（相互リンク風、素朴なやつ） */
+  #banner-corner{
+    background:#f2f2f2;
+    border-top:2px solid #cccccc;
+    padding:10px 14px;
+    text-align:center;
+  }
+  #banner-corner .banner{
+    display:inline-block;
+    width:88px;
+    height:31px;
+    background:#dddddd;
+    border:1px solid #999999;
+    font-size:9px;
+    color:#777777;
+    line-height:31px;
+    margin:3px;
+    text-decoration:none;
+  }
+  #banner-corner .banner:visited{ color:#777777; }
+
+  /* フッター */
+  #site-footer{
+    background-color: var(--footer-bg);
+    border-top:3px solid var(--box-border);
+    padding:10px 14px;
+    font-size:11px;
+    color:#777777;
+    text-align:center;
+  }
+  #site-footer .copy{ margin-top:4px; }
+
+  /* アクセスカウンター風パーツ */
+  .counter{
+    font-family: "Courier New", monospace;
+    background:#000000;
+    color:#33ff33;
+    padding:2px 6px;
+    letter-spacing:2px;
+    border:1px solid #666666;
+  }
+
+  /* under construction gif代替 */
+  .under-construction{
+    display:inline-block;
+    background:#ffff99;
+    border:2px dashed #cc6600;
+    color:#cc3300;
+    font-weight:bold;
+    padding:3px 8px;
+    font-size:11px;
+  }
+</style>
+</head>
+<body>
+
+<div id="page-wrap">
+
+  <!-- ヘッダー -->
+  <div id="site-header">
+    <table>
+      <tr>
+        <td>
+          <p id="site-title">迫小淵・澄原地区　地域振興観光案内</p>
+          <p id="site-subtitle">〜豊かな山と水にいだかれた里へようこそ〜</p>
+        </td>
+        <td id="header-right">
+          迫小淵・澄原地域振興協議会<br>
+          公式ホームページ
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ナビゲーション -->
+  <div id="nav-wrap">
+    <table>
+      <tr>
+        <td><a class="nav-btn" href="#top">トップ</a></td>
+        <td><a class="nav-btn" href="#about">地区のご案内</a></td>
+        <td><a class="nav-btn" href="#history">沿革・歴史</a></td>
+        <td><a class="nav-btn" href="#spots">名所・見どころ</a></td>
+        <td><a class="nav-btn" href="#gallery">写真ギャラリー</a></td>
+        <td><a class="nav-btn" href="#access">アクセス</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- パンくず -->
+  <div id="breadcrumb">
+    トップページ &gt; 迫小淵・澄原地区について
+  </div>
+
+  <!-- 本体 -->
+  <table id="body-table">
+  <tr>
+
+    <!-- サイドメニュー -->
+    <td id="side-col">
+
+      <div class="side-box">
+        <div class="side-box-title">メニュー</div>
+        <div class="side-box-body">
+          <a href="#about">■ 地区のご案内</a>
+          <a href="#history">■ 沿革・歴史</a>
+          <a href="#spots">■ 名所・見どころ</a>
+          <a href="#gallery">■ 写真ギャラリー</a>
+          <a href="#access">■ アクセス</a>
+          <a href="404.html">■ 地区行事カレンダー</a>
+          <a href="404.html">■ 特産品のご紹介</a>
+          <span class="under-construction">工事中</span>
+        </div>
+      </div>
+
+      <div class="side-box">
+        <div class="side-box-title">お天気情報</div>
+        <div class="side-box-body">
+          当地区の天気は下記リンク先の天気予報サービスをご参照ください。<br>
+          <a href="404.html">▶ 三重県南部の天気（外部サイト）</a>
+        </div>
+      </div>
+
+      <div class="side-box">
+        <div class="side-box-title pink">リンク集</div>
+        <div class="side-box-body">
+          <a href="404.html">三重県庁ホームページ</a>
+          <a href="404.html">近隣観光協会</a>
+          <a href="404.html">県内温泉組合連合会</a>
+        </div>
+      </div>
+
+      <div class="side-box">
+        <div class="side-box-title">アクセスカウンター</div>
+        <div class="side-box-body" style="text-align:center;">
+          あなたは<br>
+          <span class="counter">002391</span><br>
+          人目の訪問者です
+        </div>
+      </div>
+
+    </td>
+
+    <!-- メインコンテンツ -->
+    <td id="main-col">
+
+      <a name="top"></a>
+
+      <!-- お知らせ -->
+      <div id="notice-section">
+        <div class="notice-heading">お知らせ・新着情報</div>
+        <div id="notice-list">
+          <table>
+            <tr>
+              <td class="notice-date">2008.06.03</td>
+              <td><span class="notice-new">NEW</span>合併協議会だより第12号を掲載しました。</td>
+            </tr>
+            <tr>
+              <td class="notice-date">2007.09.20</td>
+              <td>県道号線の路肩補修工事にともなう通行止めのお知らせ（9/26〜9/30）</td>
+            </tr>
+            <tr>
+              <td class="notice-date">2006.11.02</td>
+              <td>平成18年度　地区住民健康診査の日程についてお知らせいたします。</td>
+            </tr>
+            <tr>
+              <td class="notice-date">2005.04.01</td>
+              <td>ホームページをリニューアルいたしました。</td>
+            </tr>
+            <tr>
+              <td class="notice-date">2004.02.10</td>
+              <td>迫小淵大橋　定期点検実施のお知らせ（通行に影響はございません）</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <a name="about"></a>
+      <h2 class="page-h2">迫小淵・澄原地区について</h2>
+
+      <p>
+        迫小淵・澄原地区は、三重県南部の山あいに位置する自然豊かな地域です。深い谷を流れる清流と、その流れをせき止めて生まれた迫小淵湖、そして古くから人々の暮らしを見守ってきた磨崖仏など、静かで落ち着いた里山の風景が今も残っています。
+      </p>
+      <p>
+        近年は都市部からの日帰り・一泊旅行の行き先としても、少しずつ知られるようになってまいりました。当ホームページでは、当地区の観光名所、歴史、アクセス方法などをご紹介しております。ぜひごゆっくりご覧ください。
+      </p>
+
+      <table class="kv-table">
+        <tr><th>人口</th><td>集計中（次回国勢調査時にあわせて更新予定）</td></tr>
+        <tr><th>主な産業</th><td>林業、川魚養殖、観光業</td></tr>
+        <tr><th>特産品</th><td>アマゴの塩焼き・甘露煮、木工芸品、山菜　ほか</td></tr>
+      </table>
+
+      <hr class="sep">
+
+      <a name="history"></a>
+      <h2 class="page-h2">沿革・歴史</h2>
+
+      <p>
+        当地区は古くから山間の集落として、林業と川漁を中心とした暮らしが営まれてきました。地区名の「迫小淵」は谷が狭まり水が深く淀む地形に、「澄原」は清らかな水にちなむと伝えられておりますが、正確な由来を示す資料は現在のところ確認されておりません。
+      </p>
+
+      <h3 class="page-h3">迫小淵湖とダムについて</h3>
+      <p>
+        昭和期の河川開発にともない、上流にダムが建設され、現在の迫小淵湖が形成されました。ダム建設にあたっては、湖の下流域にあった旧集落の移転が行われ、住民の皆様は現在の場所へと居を移されました。当時の詳しい経緯については、地区の古老よりお話をうかがうことができますので、ご興味のある方はお問い合わせください。
+      </p>
+
+      <h3 class="page-h3">澄原磨崖仏について</h3>
+      <p>
+        澄原地区の川沿いの岩壁には、古くから磨崖仏が彫られています。彫られた時期や彫った人物についての記録は残っておらず、地区では「昔からあるもの」として大切にお祀りされてきました。現在も地区の方々により、年に一度、清掃と供養が行われていると聞いております。
+      </p>
+
+      <div class="notice-box">
+        ※沿革・歴史のページは資料調査中の部分が多く、随時内容を追記してまいります。<a href="kiroku.html" style="color:#a8005c;">誤り</a>にお気づきの際は、お手数ですが地域振興協議会までご連絡ください。
+      </div>
+
+      <hr class="sep">
+
+      <a name="spots"></a>
+      <h2 class="page-h2">名所・見どころ</h2>
+
+      <h3 class="page-h3">迫小淵大橋</h3>
+      <p>
+        集落の住民が私財を出し合って建設したと伝えられる、生活用の吊り橋です。谷を渡る際の心地よい揺れと、橋上から望む渓谷の眺めが人気です。
+      </p>
+
+      <h3 class="page-h3">澄原磨崖仏</h3>
+      <p>
+        川沿いの岩壁に彫られた磨崖仏です。長い年月による風化のため、お姿の細部ははっきりとはご確認いただけませんが、その素朴な佇まいに趣があると評判です。案内板等は簡素なものとなっておりますので、あらかじめご了承ください。
+      </p>
+
+      <h3 class="page-h3">迫小淵グランドホテル跡（外観のみ）</h3>
+      <p>
+        かつて温泉客でにぎわった観光ホテルの跡地です。現在は営業しておらず、老朽化のため建物内部への立ち入りはできません。対岸の展望スペースより外観をご覧いただけます。
+      </p>
+
+      <h3 class="page-h3">迫小淵湖</h3>
+      <p>
+        山々に囲まれた静かなダム湖です。天候の良い日には湖面に周囲の山並みが美しく映り込みます。
+      </p>
+
+      <hr class="sep">
+
+      <a name="gallery"></a>
+      <h2 class="page-h2">写真ギャラリー</h2>
+
+      <p>地区の風景写真を掲載しております。（撮影：地区観光係）</p>
+
+      <!--
+        ▼画像追加用テンプレート▼
+        以下の photo-box を丸ごとコピーして、
+        src と photo-caption の文言だけ差し替えれば
+        写真を追加できます。
+      -->
+
+      <div class="photo-box">
+        <img src="images/photo01.jpg" alt="迫小淵湖の風景">
+        <div class="photo-caption">迫小淵湖（春〜夏の様子）</div>
+      </div>
+
+      <div class="photo-box">
+        <img src="images/photo02.jpg" alt="迫小淵大橋">
+        <div class="photo-caption">迫小淵大橋</div>
+      </div>
+
+      <div class="photo-box">
+        <img src="images/photo03.jpg" alt="澄原磨崖仏">
+        <div class="photo-caption">澄原磨崖仏</div>
+      </div>
+
+      <div class="photo-box">
+        <img src="images/photo04.jpg" alt="迫小淵グランドホテル跡">
+        <div class="photo-caption">迫小淵グランドホテル跡（対岸より）</div>
+      </div>
+
+      <div class="photo-box">
+        <img src="images/photo05.jpg" alt="集落の風景">
+        <div class="photo-caption">迫小淵の集落風景</div>
+      </div>
+
+      <div class="photo-box">
+        <img src="images/photo06.jpg" alt="山道の風景">
+        <div class="photo-caption">澄原へ向かう山道</div>
+      </div>
+
+      <hr class="sep">
+
+      <a name="access"></a>
+      <h2 class="page-h2">アクセス</h2>
+
+      <table class="kv-table">
+        <tr><th>お車の場合</th><td>最寄インターチェンジより山道を経由し、およそ1時間程度です。冬期は積雪・路面凍結にご注意ください。</td></tr>
+        <tr><th>公共交通機関</th><td>最寄駅より路線バスをご利用ください。バスの本数が少ないため、あらかじめ時刻表のご確認をおすすめいたします。</td></tr>
+      </table>
+
+      <div class="notice-box">
+        ※バスの時刻表は季節により変更となる場合がございます。最新の情報は運行会社の公式ページをご確認ください。
+      </div>
+
+    </td>
+  </tr>
+  </table>
+
+  <!-- バナーコーナー -->
+  <div id="banner-corner">
+    相互リンクバナー<br>
+    <a class="banner" href="404.html">三重県観光</a>
+    <a class="banner" href="404.html">近隣町村</a>
+    <a class="banner" href="404.html">県内温泉組合</a>
+    <a class="banner" href="404.html">相互リンク募集中</a>
+  </div>
+
+  <!-- フッター -->
+  <div id="site-footer">
+    このホームページの著作権は迫小淵・澄原地域振興協議会に帰属します。無断転載を禁じます。<br>
+    リンクはトップページへお願いいたします。リンクフリーです。<br>
+    <div class="copy">Copyright (C) 迫小淵・澄原地域振興協議会 All Rights Reserved.</div>
+  </div>
+
+</div>
+
+</body>
+</html>
