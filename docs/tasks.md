@@ -16,6 +16,7 @@
 | ID | タスク | 優先度 | 状態 | 担当エージェント | 備考 |
 |----|--------|--------|------|------------------|------|
 | T-001 | サイト一式（index/kiroku/404/images）の初期登録 | 高 | 完了 | claude | ユーザー提供のsakobuchi_site.zipを展開しリポジトリ直下へ配置。docs/tasks.md・progress.md・decisions.md・README.mdをproject001テンプレート状態からリセット |
+| T-002 | robots.txt追加とGitHub Pages公開準備 | 中 | 完了 | claude | 検索エンジンによるクロールを拒否するrobots.txtを追加（D-002参照）。GitHub Pages自体の有効化はユーザー操作が必要なため未実施 |
 
 ## バックログ（未着手・優先度未確定）
 
