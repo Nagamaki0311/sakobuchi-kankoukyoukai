@@ -102,3 +102,19 @@
 
 ### 次回開始位置
 - 特になし。kiroku.htmlは写真ギャラリー欄を持たないため、今回の画像投入はindex.html（正規サイト）のみが対象。
+
+---
+
+## 2026-09-02 T-006: GitHub Pages公開確認とkiroku.htmlのグリッチ演出の置き換え
+
+### 実施内容
+- ユーザーからGitHub Pagesを有効化した旨の連絡を受け、公開URL（`https://nagamaki0311.github.io/sakobuchi-kankoukyoukai/`）のindex.htmlとkiroku.htmlをWebFetchで確認した。index.htmlは正常に表示され、フェイクリンクが404.htmlへ遷移するのも設計通りだった。kiroku.htmlはWebFetchのAI要約が「致命的なエンコードエラーが発生しているページ」と誤認するほど、文字化け演出が意図通り機能していることを確認した。
+- ユーザーから、T-004で対応した後もなお核心語の色・text-shadow明滅演出（`kiroku-glitch-pulse`）がチープに見え恐怖効果を薄めているという指摘を受けた。ユーザーは「削除もしくは完全に別のアニメーション演出（42秒おきに画面全体に影響・ゆがむグリッチ）にしてみるなど」と提案した。
+- 文字単位の演出を撤去し、42秒周期のうち約0.5秒（97%〜98.2%の区間）だけ`#page-wrap`全体にtranslate・skewX・filter（invert/contrast/saturate/hue-rotate）を`steps(1,end)`で断続的に適用する`kiroku-screen-glitch`アニメーションへ置き換えた。核心語24文字spanに付与していた`animation:kiroku-glitch-pulse ...;`のインラインプロパティも正規表現で一括除去し、`@keyframes kiroku-glitch-pulse`定義自体も削除した。読み込み時の一度きりの明滅（`kiroku-flicker-in`）は指摘対象外のためそのまま維持した。
+
+### 結果
+- `<span>`・`<p>`・`<div>`のタグ開閉数が編集前後で一致することを確認した。
+- 42sという周期はPlaywrightでの目視確認に不向きなため、`kiroku-screen-glitch`のduration値のみを2sに置き換えた一時ファイルを別途作成し、`getComputedStyle`を5ms間隔でポーリングして`transform`・`filter`の値を監視した。約2.34秒地点で`matrix(1, 0, 0.0349208, 1, 8, -6)`・`filter:invert(1)`（97.4%キーフレームに相当する値）が実際に適用されることを確認し、一時ファイルは削除した。本番の`kiroku.html`（42s版）はこのロジックをduration以外変更していないため、同じ挙動になる。
+
+### 次回開始位置
+- 特になし。
