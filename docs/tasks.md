@@ -26,6 +26,7 @@
 | T-009 | 独自ドメイン（nk-pr.com）でのGitHub Pages公開準備 | 中 | 完了 | claude | サブドメイン方式（sakobuchi.nk-pr.com）でCNAMEファイルを追加。Cloudflare側のDNSレコード追加・GitHub側のHTTPS強制はユーザー操作が必要なため未実施 |
 | T-010 | ブラウザの強制ダークモード対策（color-scheme宣言の追加） | 高 | 完了 | claude | X等のアプリ内ブラウザで意図しない自動ダーク化が発生した不具合に対応。3ページ全てに`<meta name="color-scheme" content="light">`を追加 |
 | T-012 | kiroku.htmlに文字が枠外へ逸脱する演出を追加 | 中 | 完了 | claude | ユーザー指摘（構造が常に整然としたまま）を受け、核心語2箇所（磔・祟り）と結びの改ざん文の一部が、大きなtransformで見出しバーや本文の枠・page-wrap外へ視覚的にはみ出す演出を3箇所のみ追加（ドキュメントフロー自体は変更していない）。番号はT-011（メモ欄が参照するproject001由来の無関係な既存参照）との衝突を避けT-012とした |
+| T-013 | kiroku.htmlの逸脱演出をpage-wrap左右の余白領域にも拡張 | 低 | 完了 | claude | 「縛る」「天女」の2文字をposition:absolute（page-wrap基準）でleft/right負の値に配置し、page-wrap外の左右の余白（濁った湖の背景）まで視覚的に逸出させた |
 
 ## バックログ（未着手・優先度未確定）
 
