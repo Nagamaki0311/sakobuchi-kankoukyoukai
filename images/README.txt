@@ -4,7 +4,7 @@
 - photo01.jpg （迫小淵湖）
 - photo02.jpg （迫小淵大橋）
 - photo03.jpg （澄原磨崖仏）
-- photo04.jpg （迫小淵グランドホテル跡）
+- photo04.jpg （迫小淵グランドホテル）
 - photo05.jpg （集落の風景）
 - photo06.jpg （山道の風景）
 
