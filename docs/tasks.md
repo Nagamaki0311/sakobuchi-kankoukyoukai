@@ -24,6 +24,7 @@
 | T-007 | kiroku-screen-glitchのネガ（色反転）区間を明確化 | 低 | 完了 | claude | filter:invert(1)が一瞬（1キーフレームのみ）だった区間を、歪みバースト内で明確に保持される複数キーフレーム区間へ拡張 |
 | T-008 | kiroku.htmlの背景色を「濁った湖」パレットへ変更 | 中 | 完了 | claude | body・ヘッダー・ナビ・サイドバー等の構造色を、index.htmlの明るい水色基調から一転させる暗緑・泥色系へ変更。既存の最淡グレー階調（#999999）はコントラスト低下を補うため#808080へ調整 |
 | T-009 | 独自ドメイン（nk-pr.com）でのGitHub Pages公開準備 | 中 | 完了 | claude | サブドメイン方式（sakobuchi.nk-pr.com）でCNAMEファイルを追加。Cloudflare側のDNSレコード追加・GitHub側のHTTPS強制はユーザー操作が必要なため未実施 |
+| T-010 | ブラウザの強制ダークモード対策（color-scheme宣言の追加） | 高 | 完了 | claude | X等のアプリ内ブラウザで意図しない自動ダーク化が発生した不具合に対応。3ページ全てに`<meta name="color-scheme" content="light">`を追加 |
 
 ## バックログ（未着手・優先度未確定）
 
