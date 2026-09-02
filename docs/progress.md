@@ -33,3 +33,19 @@
 
 ### 次回開始位置
 - 特になし。`images/`フォルダへの実際の写真ファイル（AI生成画像）の追加、GitHub Pagesでの公開設定は今後発生しうる別タスク（ユーザー確認が必要な場合あり）。
+
+---
+
+## 2026-09-02 T-002: robots.txt追加とGitHub Pages公開準備
+
+### 実施内容
+- ユーザーから「サイトのリンクを出せますか」という依頼を受け、現時点ではGitHub Pages等の公開設定を行っていないためURLが存在しないことを回答した。
+- GitHub Pagesで公開する場合の対応方針をユーザーに確認し、「robots.txtで検索エンジンのクロールを拒否しつつ公開する」を選択された（D-002参照）。
+- リポジトリ直下に`robots.txt`（`Disallow: /`で全体のクロールを拒否）を追加した。
+- GitHub Pagesの有効化自体（リポジトリ設定のSettings > Pages）は、この環境で利用可能なツール（GitHub MCP Server、`gh` CLI）のいずれからも操作できないAPI領域のため実施できなかった。
+
+### 結果
+- GitHub MCP Serverのツール一覧・ToolSearchでPages関連の設定変更ツールが存在しないことを確認した。`gh` CLIは本セッションのCapability検出でも`unavailable`（未導入）。
+
+### 次回開始位置
+- ユーザーがGitHubのリポジトリ設定でPagesを有効化（Source: mainブランチ、ルート）した後、実際に公開URL（`https://nagamaki0311.github.io/sakobuchi-kankoukyoukai/`想定）でindex.html・kiroku.html・404.htmlの表示を確認する。
