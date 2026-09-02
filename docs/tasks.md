@@ -23,6 +23,7 @@
 | T-006 | kiroku.htmlの文字単位グリッチをユーザー指摘により画面全体の間欠グリッチへ置き換え | 中 | 完了 | claude | 核心語の色・text-shadow明滅（kiroku-glitch-pulse）を撤去し、42秒周期で0.5秒だけ画面全体が歪む演出（kiroku-screen-glitch）に置き換え（D-005参照） |
 | T-007 | kiroku-screen-glitchのネガ（色反転）区間を明確化 | 低 | 完了 | claude | filter:invert(1)が一瞬（1キーフレームのみ）だった区間を、歪みバースト内で明確に保持される複数キーフレーム区間へ拡張 |
 | T-008 | kiroku.htmlの背景色を「濁った湖」パレットへ変更 | 中 | 完了 | claude | body・ヘッダー・ナビ・サイドバー等の構造色を、index.htmlの明るい水色基調から一転させる暗緑・泥色系へ変更。既存の最淡グレー階調（#999999）はコントラスト低下を補うため#808080へ調整 |
+| T-009 | 独自ドメイン（nk-pr.com）でのGitHub Pages公開準備 | 中 | 完了 | claude | サブドメイン方式（sakobuchi.nk-pr.com）でCNAMEファイルを追加。Cloudflare側のDNSレコード追加・GitHub側のHTTPS強制はユーザー操作が必要なため未実施 |
 
 ## バックログ（未着手・優先度未確定）
 
