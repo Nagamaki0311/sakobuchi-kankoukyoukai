@@ -324,3 +324,19 @@
 
 ### 次回開始位置
 - 特になし。写真ギャラリーの齟齬（T-017参照）は引き続き未対応、ユーザーからの追加指示待ち。
+
+---
+
+## 2026-09-03 T-020: X（旧Twitter）アプリ内ブラウザでの強制ダーク化の再発対策
+
+### 実施内容
+- ユーザーから「Xのスマホアプリでリンクを開くと、Xアプリのダークモード設定に連動してサイト背景が暗くなる」という再発報告を受けた。T-010で`<meta name="color-scheme" content="light">`を3ページに追加済みだったが、再発が確認された。
+- 原因を調査した。metaタグの`color-scheme`はブラウザに「このページはlightのみ対応」と伝える宣言だが、Android系Chromium WebView（Xアプリ内ブラウザが利用）の「Web内容の自動ダークモード（force dark）」機能は、CSSの`color-scheme`プロパティを判定条件として実装されている場合があり、metaタグのみでは無効化されないケースがあると判明した。
+- 3ページ（index.html/kiroku.html/404.html）のCSSに`html{ color-scheme: light only; }`を追加した。`only`キーワードは、UAによるアクセシビリティ目的の強制ダーク変換（force dark等）を明示的に禁止するCSS Color Adjustment仕様のキーワードであり、metaタグでは指定できない。
+
+### 結果
+- Playwrightで`color_scheme="dark"`をエミュレートしたコンテキストから3ページを開き、`getComputedStyle(document.body).backgroundColor`が明色（`rgb(223, 240, 245)`等の元のページ背景色）のまま維持されること、`getComputedStyle(document.documentElement).colorScheme`が`light only`と認識されることを確認した。
+- index.htmlのスクリーンショットで、dark-scheme環境でも通常通りの明るい配色で表示されることを目視確認した。
+
+### 次回開始位置
+- 特になし。Android実機のXアプリ、iOS版XアプリのSFSafariViewControllerでの実機確認はユーザー側で行うことが望ましい（本セッションはPlaywrightのエミュレーションのみで、実際のforce-darkヒューリスティックそのものの再現はできないため）。写真ギャラリーの齟齬（T-017参照）は引き続き未対応、ユーザーからの追加指示待ち。
