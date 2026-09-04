@@ -157,9 +157,42 @@
     color:#777777;
     text-align:center;
   }
+
+  @keyframes kiroku-fatal-flash{
+    0%{ opacity:0; }
+    2%{ opacity:0; }
+    4%{ opacity:1; }
+    27%{ opacity:1; }
+    29%{ opacity:0; }
+    100%{ opacity:0; }
+  }
+  #fatal-flash{
+    position:fixed;
+    top:0; left:0; right:0; bottom:0;
+    background:#000000;
+    color:#cccccc;
+    font-family:"Courier New", Courier, monospace;
+    font-size:12px;
+    line-height:1.7;
+    padding:26px 30px;
+    white-space:pre-wrap;
+    word-break:break-all;
+    z-index:9999;
+    opacity:0;
+    pointer-events:none;
+    animation: kiroku-fatal-flash 0.7s steps(1, end) 1;
+    animation-delay:0.15s;
+  }
 </style>
 </head>
 <body>
+
+<div id="fatal-flash">Fatal error: Uncaught Error: Call to a member function fetch() on null in /home/sakobuchi/www/kiroku.php:118
+Stack trace:
+#0 /home/sakobuchi/www/kiroku.php(42): DB_Connection-&gt;query()
+#1 /home/sakobuchi/www/index.php(9): require()
+#2 {main}
+  thrown in /home/sakobuchi/www/kiroku.php on line 118</div>
 
 <div id="page-wrap">
 
