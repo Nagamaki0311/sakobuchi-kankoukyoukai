@@ -170,6 +170,18 @@
     position:fixed;
     top:0; left:0; right:0; bottom:0;
     background:#000000;
+    overflow:hidden;
+    z-index:9999;
+    opacity:0;
+    pointer-events:none;
+    animation: kiroku-fatal-flash 1.0s steps(1, end) 1;
+    animation-delay:0.15s;
+  }
+  @keyframes kiroku-fatal-scroll{
+    0%{ transform:translateY(-160px); }
+    100%{ transform:translateY(140px); }
+  }
+  #fatal-flash-text{
     color:#cccccc;
     font-family:"Courier New", Courier, monospace;
     font-size:12px;
@@ -177,17 +189,14 @@
     padding:26px 30px;
     white-space:pre-wrap;
     word-break:break-all;
-    z-index:9999;
-    opacity:0;
-    pointer-events:none;
-    animation: kiroku-fatal-flash 1.0s steps(1, end) 1;
+    animation: kiroku-fatal-scroll 1.0s linear 1;
     animation-delay:0.15s;
   }
 </style>
 </head>
 <body>
 
-<div id="fatal-flash">Fatal error: Uncaught Error: Call to a member function fetch() on null in /home/sakobuchi/www/kiroku.php:118
+<div id="fatal-flash"><div id="fatal-flash-text">Fatal error: Uncaught Error: Call to a member function fetch() on null in /home/sakobuchi/www/kiroku.php:118
 Stack trace:
 #0 /home/sakobuchi/www/kiroku.php(42): DB_Connection-&gt;query()
 #1 /home/sakobuchi/www/index.php(9): require()
@@ -202,7 +211,7 @@ Stack trace:
 [Fri Sep 04 03:12:08 2026] [notice] child pid 21374 exit signal Segmentation fault (11)
 [Fri Sep 04 03:12:08 2026] [error] [client 10.0.2.14] PHP Warning:  mysqli_query(): (HY000/2006): MySQL server has gone away in /home/sakobuchi/www/kiroku.php on line 41
 [Fri Sep 04 03:12:08 2026] [error] [client 10.0.2.14] PHP Warning:  mysqli_connect(): (HY000/2002): Connection refused in /home/sakobuchi/www/db_connect.php on line 8
-[Fri Sep 04 03:12:09 2026] [error] [client 10.0.2.14] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /home/sakobuchi/www/kiroku.php on line 118
+[Thu Jan 01 1978 00:00:00] [error] [client 10.0.2.14] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /home/sakobuchi/www/kiroku.php on line 118
 [Fri Sep 04 03:12:09 2026] [error] [client 10.0.2.14] PHP Warning:  mysqli_query(): (HY000/1030): Got error 127 from storage engine in /home/sakobuchi/www/kiroku.php on line 41
 [Fri Sep 04 03:12:09 2026] [error] [client 10.0.2.14] PHP Notice:  Trying to access array offset on value of type null in /home/sakobuchi/www/kiroku.php on line 44
 [Fri Sep 04 03:12:09 2026] [error] [client 10.0.2.14] PHP Warning:  file_get_contents(/home/sakobuchi/data/record_2891.txt): failed to open stream: No such file or directory in /home/sakobuchi/www/kiroku.php on line 27
@@ -210,20 +219,20 @@ Stack trace:
 [Fri Sep 04 03:12:10 2026] [notice] child pid 21389 exit signal Segmentation fault (11)
 [Fri Sep 04 03:12:10 2026] [error] [client 10.0.2.14] PHP Warning:  mysqli_connect(): (HY000/2002): Connection refused in /home/sakobuchi/www/db_connect.php on line 8
 [Fri Sep 04 03:12:10 2026] [error] [client 10.0.2.14] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/sakobuchi/www/kiroku.php on line 96
-[Fri Sep 04 03:12:11 2026] [error] [client 10.0.2.14] PHP Warning:  mysqli_query(): (HY000/1030): Got error 127 from storage engine in /home/sakobuchi/www/kiroku.php on line 41
-[Fri Sep 04 03:12:11 2026] [error] [client 10.0.2.14] PHP Notice:  Undefined offset: 2891 in /home/sakobuchi/www/kiroku.php on line 46
-[Fri Sep 04 03:12:11 2026] [error] [client 10.0.2.14] PHP Warning:  file_get_contents(/home/sakobuchi/data/record_2891.txt): failed to open stream: No such file or directory in /home/sakobuchi/www/kiroku.php on line 27
-[Fri Sep 04 03:12:12 2026] [error] [client 10.0.2.14] mod_fcgid: process /home/sakobuchi/www/kiroku.php(21402) exit(255), reason: signal 11
-[Fri Sep 04 03:12:12 2026] [notice] child pid 21402 exit signal Segmentation fault (11)
-[Fri Sep 04 03:12:12 2026] [error] [client 10.0.2.14] PHP Warning:  mysqli_connect(): (HY000/2002): Connection refused in /home/sakobuchi/www/db_connect.php on line 8
+[Fri Sep 04 03:12:11 2026] [error] [client 127.0.0.1] PHP Warning:  mysqli_query(): (HY000/1030): Got error 127 from storage engine in /home/sakobuchi/www/kiroku.php on line 41
+[Fri Sep 04 03:12:11 2026] [error] [client 127.0.0.1] PHP Notice:  Undefined offset: 2891 in /home/sakobuchi/www/kiroku.php on line 46
+[Fri Sep 04 03:12:11 2026] [error] [client 127.0.0.1] PHP Warning:  file_get_contents(/home/sakobuchi/data/tennyo_2891.dat): failed to open stream: No such file or directory in /home/sakobuchi/www/kiroku.php on line 27
+[Fri Sep 04 03:12:12 2026] [error] [client 127.0.0.1] mod_fcgid: process /home/sakobuchi/www/kiroku.php(21374) exit(255), reason: signal 11
+[Fri Sep 04 03:12:12 2026] [notice] child pid 21374 exit signal Segmentation fault (11)
+[Fri Sep 04 03:12:12 2026] [error] [client 127.0.0.1] PHP Warning:  mysqli_connect(): (HY000/2002): Connection refused in /home/sakobuchi/www/db_connect.php on line 8
 [Fri Sep 04 03:12:12 2026] [error] [client 10.0.2.14] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 8192 bytes) in /home/sakobuchi/www/kiroku.php on line 118
 [Fri Sep 04 03:12:13 2026] [error] [client 10.0.2.14] PHP Warning:  mysqli_query(): (HY000/1030): Got error 127 from storage engine in /home/sakobuchi/www/kiroku.php on line 41
 [Fri Sep 04 03:12:13 2026] [error] [client 10.0.2.14] PHP Notice:  Undefined variable: record_id in /home/sakobuchi/www/kiroku.php on line 39
-[Fri Sep 04 03:12:13 2026] [error] [client 10.0.2.14] PHP Warning:  file_get_contents(/home/sakobuchi/data/record_2891.txt): failed to open stream: No such file or directory in /home/sakobuchi/www/kiroku.php on line 27
-[Fri Sep 04 03:12:13 2026] [error] [client 10.0.2.14] mod_fcgid: process /home/sakobuchi/www/kiroku.php(21418) exit(255), reason: signal 11
-[Fri Sep 04 03:12:14 2026] [notice] child pid 21418 exit signal Segmentation fault (11)
+[Fri Sep 04 03:12:13 2026] [error] [client 10.0.2.14] PHP Warning:  file_put_contents(/home/sakobuchi/data/record_2891.txt): 上書き試行3回目、失敗 in /home/sakobuchi/www/kiroku.php on line 27
+[Fri Sep 04 03:12:13 2026] [error] [client 10.0.2.14] mod_fcgid: process /home/sakobuchi/www/kiroku.php(21374) exit(255), reason: signal 11
+[Fri Sep 04 03:12:14 2026] [notice] child pid 21374 exit signal Segmentation fault (11)
 [Fri Sep 04 03:12:14 2026] [error] [client 10.0.2.14] PHP Warning:  mysqli_connect(): (HY000/2002): Connection refused in /home/sakobuchi/www/db_connect.php on line 8
-[Fri Sep 04 03:12:14 2026] [notice] Apache/2.2.22 (Unix) mod_fcgid/2.3.9 configured -- resuming normal operations</div>
+[Fri Sep 04 03:12:14 2026] [notice] Apache/2.2.22 (Unix) mod_fcgid/2.3.9 configured -- resuming normal operations</div></div>
 
 <div id="page-wrap">
 
